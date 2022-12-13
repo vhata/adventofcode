@@ -8,13 +8,13 @@ monkey_info = {}
 monkeys = []
 while r := list(islice(sys.stdin, 7)):
     monkey = {}
-    _, monkey_num = r[0].strip().strip(':').split()
+    _, monkey_num = r[0].strip().strip(":").split()
     monkeys.append(monkey_num)
 
     _, _, items_s = r[1].strip().split(None, 2)
-    monkey["items"] = list(map(int, items_s.split(', ')))
-    monkey["operation"] = r[2].strip()[len("Operation: new = "):]
-    monkey["divis"] = int(r[3].strip().split()[3]) # all tests are "is divisible by"
+    monkey["items"] = list(map(int, items_s.split(", ")))
+    monkey["operation"] = r[2].strip()[len("Operation: new = ") :]
+    monkey["divis"] = int(r[3].strip().split()[3])  # all tests are "is divisible by"
     monkey["recips"] = tuple(r[x].strip().split()[-1] for x in [4, 5])
     monkey["inspections"] = 0
 
@@ -25,7 +25,7 @@ for _ in range(20):
         m = monkey_info[mn]
         for item in m["items"]:
             m["inspections"] += 1
-            item = eval(m["operation"], {'old': item})
+            item = eval(m["operation"], {"old": item})
             item = item // 3
             if not item % m["divis"]:
                 recip = m["recips"][0]
@@ -34,4 +34,8 @@ for _ in range(20):
             monkey_info[recip]["items"].append(item)
         m["items"] = []  # all thrown away
 
-print(reduce(lambda a, b: a*b, sorted(monkey_info[m]["inspections"] for m in monkeys)[-2:]))
+print(
+    reduce(
+        lambda a, b: a * b, sorted(monkey_info[m]["inspections"] for m in monkeys)[-2:]
+    )
+)

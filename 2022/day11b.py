@@ -8,20 +8,20 @@ monkey_info = {}
 monkeys = []
 
 ops = {
-    '*': lambda a, b: a*b,
-    '+': lambda a, b: a+b,
+    "*": lambda a, b: a * b,
+    "+": lambda a, b: a + b,
 }
-var = lambda x, y: y if x == 'old' else int(x)
+var = lambda x, y: y if x == "old" else int(x)
 
 while r := list(islice(sys.stdin, 7)):
     monkey = {}
-    _, monkey_num = r[0].strip().strip(':').split()
+    _, monkey_num = r[0].strip().strip(":").split()
     monkeys.append(monkey_num)
 
     _, _, items_s = r[1].strip().split(None, 2)
-    monkey["items"] = list(map(int, items_s.split(', ')))
-    monkey["operation"] = r[2].strip()[len("Operation: new = old "):]
-    monkey["divis"] = int(r[3].strip().split()[3]) # all tests are "is divisible by"
+    monkey["items"] = list(map(int, items_s.split(", ")))
+    monkey["operation"] = r[2].strip()[len("Operation: new = old ") :]
+    monkey["divis"] = int(r[3].strip().split()[3])  # all tests are "is divisible by"
     monkey["recips"] = tuple(r[x].strip().split()[-1] for x in [4, 5])
     monkey["inspections"] = 0
 
@@ -29,7 +29,7 @@ while r := list(islice(sys.stdin, 7)):
 
 # The trick(tm) - if we modulo our worry by all the divisors (which are all prime)
 # then the rule about divisibility will stay the same
-supermod = reduce(lambda a,b: a*b, [monkey_info[mn]["divis"] for mn in monkeys])
+supermod = reduce(lambda a, b: a * b, [monkey_info[mn]["divis"] for mn in monkeys])
 
 for _ in range(10000):
     for mn in monkeys:
@@ -46,4 +46,8 @@ for _ in range(10000):
             monkey_info[recip]["items"].append(item)
         m["items"] = []  # all thrown away
 
-print(reduce(lambda a, b: a*b, sorted(monkey_info[m]["inspections"] for m in monkeys)[-2:]))
+print(
+    reduce(
+        lambda a, b: a * b, sorted(monkey_info[m]["inspections"] for m in monkeys)[-2:]
+    )
+)
