@@ -6,8 +6,6 @@ import sys
 total = 0
 
 for r in map(str.strip, sys.stdin):
-    # use regex to find the first and last digits in the string
-    # and convert them to integers
     m = re.match(r'^[^0-9]*([0-9])', r)
     assert m
     first = m.group(1)
