@@ -43,8 +43,8 @@ minloc = math.inf
 
 for sr in seed_ranges:
     print(sr)
-    for x in get_seeds(sr):
-        minloc = min(minloc, getlocation(x))
+    x = next(get_seeds(sr))
+    minloc = min(minloc, getlocation(x))
     print(minloc)
     print('-----')
 
