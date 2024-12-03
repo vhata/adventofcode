@@ -9,5 +9,5 @@ total = 0
 for r in map(str.strip, sys.stdin):
     for match in re.findall(MUL_RE, r):
         total += int(match[0]) * int(match[1])
-        
+
 print(total)

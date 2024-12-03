@@ -18,4 +18,3 @@ for l, r in zip(left, right):
     total += abs(l - r)
 
 print(total)
-

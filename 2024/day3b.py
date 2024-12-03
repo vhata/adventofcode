@@ -16,5 +16,5 @@ for r in map(str.strip, sys.stdin):
         else:
             if do:
                 total += int(match[2]) * int(match[3])
-        
+
 print(total)
